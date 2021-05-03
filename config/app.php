@@ -41,6 +41,7 @@ return [
 
     'debug' => env('APP_DEBUG', false),
 
+
     /*
     |--------------------------------------------------------------------------
     | Application URL
@@ -119,7 +120,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
+    'key' => env('APP_KEY', 'Cocojumbowalomino'),
 
     'cipher' => 'AES-256-CBC',
 
