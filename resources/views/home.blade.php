@@ -4,6 +4,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Tableau de bord</h1>
     </div>
+    
     <div class="row">
 
         <!-- Earnings (Monthly) Card Example -->
@@ -78,6 +79,7 @@
             </div>
         </div>
     </div>
+
     <div class="row">
 
         <!-- Content Column -->
@@ -131,6 +133,7 @@
         </div>
 
     </div>
+
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">

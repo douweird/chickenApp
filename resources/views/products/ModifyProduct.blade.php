@@ -5,38 +5,44 @@
         <h1 class="h3 mb-0 text-gray-800">Modifier un Produit</h1>
     </div>
 
-    <form method="post" action="{{url('/ModifyProduct/'.$product->id)}}">
+    <form method="post" action="{{ url('/ModifyProduct/' . $product->id) }}">
         {{ csrf_field() }}
         <div class="form-group row">
-            <label for="name" class="col-sm-2 col-form-label">Designation</label>
+            <label for="name" class="col-sm-2 col-form-label">الاسم</label>
             <div class="col-sm-4">
-                <input type="text"  class="form-control" id="name" placeholder="Designation ..." name="name" value="{{ $product->name }}" required>
+                <input type="text" class="form-control" id="name" placeholder="Designation ..." name="name"
+                    value="{{ $product->name }}" required>
             </div>
-            <label for="category" class="col-sm-2 col-form-label">Categorie</label>
+            <label for="category" class="col-sm-2 col-form-label">فئة</label>
             <div class="col-sm-4">
-                <input type="text"  class="form-control" id="category"  name="category" value="{{ $product->category }}" readonly>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="buying_price" class="col-sm-2 col-form-label">Prix d'achat</label>
-            <div class="col-sm-4">
-                <input type="number"  class="form-control" id="buying_price" placeholder="Prix D'achat ..." name="buying_price" value="{{ $product->buying_price }}" required>
-            </div>
-            <label for="selling_price" class="col-sm-2 col-form-label">Prix de vente</label>
-            <div class="col-sm-4">
-                <input type="number"  class="form-control" id="selling_price" placeholder="Prix de vente ..." name="selling_price" value="{{ $product->selling_price }}" >
+                <input type="text" class="form-control" id="category" name="category" value="{{ $product->category }}"
+                    readonly>
             </div>
         </div>
         <div class="form-group row">
-            <label for="unite" class="col-sm-2 col-form-label">Unité</label>
+            <label for="buying_price" class="col-sm-2 col-form-label">ثمن الشراء </label>
+            <div class="col-sm-4">
+                <input type="number" class="form-control" id="buying_price" placeholder="Prix D'achat ..."
+                    name="buying_price" value="{{ $product->buying_price }}" required>
+            </div>
+            <label for="selling_price" class="col-sm-2 col-form-label">ثمن البيع</label>
+            <div class="col-sm-4">
+                <input type="number" class="form-control" id="selling_price" placeholder="Prix de vente ..."
+                    name="selling_price" value="{{ $product->selling_price }}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="unite" class="col-sm-2 col-form-label">وحدة</label>
             <div class="col-sm-10">
-                <input type="number" class="form-control" id="unite" placeholder="Unité ..." name="unite" value="{{ $product->unite }}" required>
+                <input type="number" class="form-control" id="unite" placeholder="Unité ..." name="unite"
+                    value="{{ $product->unite }}" required>
             </div>
         </div>
         <div class="form-group row">
-            <label for="quantity" class="col-sm-2 col-form-label">Quantité</label>
+            <label for="quantity" class="col-sm-2 col-form-label">كمية</label>
             <div class="col-sm-10">
-                <input  type="number" class="form-control" id="quantity" placeholder="Quantité ... " name="quantity" value="{{ $product->quantity }}" />
+                <input type="number" class="form-control" id="quantity" placeholder="Quantité ... " name="quantity"
+                    value="{{ $product->quantity }}" />
             </div>
         </div>
 
