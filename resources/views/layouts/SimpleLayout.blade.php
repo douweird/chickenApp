@@ -85,8 +85,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">شيك و كمبيالات</h6>
-                        <a class="collapse-item" href="/AddClient">اضافة شيك أو كمبيالات</a>
-                        <a class="collapse-item" href="/ViewClient">الشيكات و كمبيالات الحالية</a>
+                        <a class="collapse-item" href="/AddCheck">اضافة شيك أو كمبيالات</a>
+                        <a class="collapse-item" href="/CheckView">الشيكات و كمبيالات الحالية</a>
 
                     </div>
                 </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Check;
 use Illuminate\Http\Request;
 use App\Product;
 
@@ -28,93 +29,99 @@ class HomeController extends Controller
         return view('home');
     }
 
-/*-----------------------------------------------------------------
+    /*-----------------------------------------------------------------
                     DINDE CRUD
 ------------------------------------------------------------------- */
 
-    public function DindeView(){
-        $products = Product::where('category','Dinde')->get();
+    public function DindeView()
+    {
+        $products = Product::where('category', 'Dinde')->get();
         $arr = array('products' => $products);
-        $category="Dinde";
-        return view('products.ProductView', $arr,compact('category'));
+        $category = "Dinde";
+        return view('products.ProductView', $arr, compact('category'));
     }
 
-    public function AddDindeProduct(Request $request){
+    public function AddDindeProduct(Request $request)
+    {
 
-        if($request->isMethod('post')){
+        if ($request->isMethod('post')) {
             $newproduct = new Product();
-            $newproduct->name=$request->input('name');
-            $newproduct->category="Dinde";
-            $newproduct->buying_price=$request->input('buying_price');
-            $newproduct->selling_price=$request->input('selling_price');
-            $newproduct->unite=$request->input('unite');
-            $newproduct->quantity=$request->input('quantity');
+            $newproduct->name = $request->input('name');
+            $newproduct->category = "Dinde";
+            $newproduct->buying_price = $request->input('buying_price');
+            $newproduct->selling_price = $request->input('selling_price');
+            $newproduct->unite = $request->input('unite');
+            $newproduct->quantity = $request->input('quantity');
             $newproduct->save();
             return redirect('/DindeView');
         }
         return view('products.AddDindeProduct');
     }
-/*-----------------------------------------------------------------
+    /*-----------------------------------------------------------------
                    END OF DINDE CRUD
 ------------------------------------------------------------------- */
 
-/*-----------------------------------------------------------------
+    /*-----------------------------------------------------------------
                     Mortadelle CRUD
 ------------------------------------------------------------------- */
 
-public function MortadelleView(){
-    $products = Product::where('category','Mortadelle')->get();
-    $arr = array('products' => $products);
-    $category="Mortadelle";
-    return view('products.ProductView', $arr ,compact('category'));
-}
-
-public function AddMortadelleProduct(Request $request){
-
-    if($request->isMethod('post')){
-        $newproduct = new Product();
-        $newproduct->name=$request->input('name');
-        $newproduct->category="Mortadelle";
-        $newproduct->buying_price=$request->input('buying_price');
-        $newproduct->selling_price=$request->input('selling_price');
-        $newproduct->unite=$request->input('unite');
-        $newproduct->quantity=$request->input('quantity');
-        $newproduct->save();
-        return redirect('/MortadelleView');
+    public function MortadelleView()
+    {
+        $products = Product::where('category', 'Mortadelle')->get();
+        $arr = array('products' => $products);
+        $category = "Mortadelle";
+        return view('products.ProductView', $arr, compact('category'));
     }
-    return view('products.AddMortadelleProduct');
-}
-/*-----------------------------------------------------------------
+
+    public function AddMortadelleProduct(Request $request)
+    {
+
+        if ($request->isMethod('post')) {
+            $newproduct = new Product();
+            $newproduct->name = $request->input('name');
+            $newproduct->category = "Mortadelle";
+            $newproduct->buying_price = $request->input('buying_price');
+            $newproduct->selling_price = $request->input('selling_price');
+            $newproduct->unite = $request->input('unite');
+            $newproduct->quantity = $request->input('quantity');
+            $newproduct->save();
+            return redirect('/MortadelleView');
+        }
+        return view('products.AddMortadelleProduct');
+    }
+    /*-----------------------------------------------------------------
                END OF Mortadelle CRUD
 ------------------------------------------------------------------- */
 
-/*-----------------------------------------------------------------
+    /*-----------------------------------------------------------------
                     Alimentation CRUD
 ------------------------------------------------------------------- */
 
-public function AlimentationView(){
-    $products = Product::where('category','Alimentation')->get();
-    $arr = array('products' => $products);
-    $category="Alimentation";
-    return view('products.ProductView', $arr ,compact('category'));
-}
-
-public function AddAlimentationProduct(Request $request){
-
-    if($request->isMethod('post')){
-        $newproduct = new Product();
-        $newproduct->name=$request->input('name');
-        $newproduct->category="Alimentation";
-        $newproduct->buying_price=$request->input('buying_price');
-        $newproduct->selling_price=$request->input('selling_price');
-        $newproduct->unite=$request->input('unite');
-        $newproduct->quantity=$request->input('quantity');
-        $newproduct->save();
-        return redirect('/AlimentationView');
+    public function AlimentationView()
+    {
+        $products = Product::where('category', 'Alimentation')->get();
+        $arr = array('products' => $products);
+        $category = "Alimentation";
+        return view('products.ProductView', $arr, compact('category'));
     }
-    return view('products.AddAlimentationProduct');
-}
-/*-----------------------------------------------------------------
+
+    public function AddAlimentationProduct(Request $request)
+    {
+
+        if ($request->isMethod('post')) {
+            $newproduct = new Product();
+            $newproduct->name = $request->input('name');
+            $newproduct->category = "Alimentation";
+            $newproduct->buying_price = $request->input('buying_price');
+            $newproduct->selling_price = $request->input('selling_price');
+            $newproduct->unite = $request->input('unite');
+            $newproduct->quantity = $request->input('quantity');
+            $newproduct->save();
+            return redirect('/AlimentationView');
+        }
+        return view('products.AddAlimentationProduct');
+    }
+    /*-----------------------------------------------------------------
                END OF Alimentation CRUD
 ------------------------------------------------------------------- */
 
@@ -137,7 +144,7 @@ public function AddAlimentationProduct(Request $request){
             $newproduct->unite = $request->input('unite');
             $newproduct->quantity = $request->input('quantity');
             $newproduct->save();
-            return redirect("/".$request->input('category')."View");
+            return redirect("/" . $request->input('category') . "View");
         }
 
         $product = Product::find($id);
@@ -145,4 +152,52 @@ public function AddAlimentationProduct(Request $request){
         return view('products.ModifyProduct', $arr);
     }
 
+    public function addCheck(Request $request)
+    {
+
+        if ($request->isMethod('post')) {
+            $newproduct = new Check();
+            $newproduct->name = $request->input('name');
+            $newproduct->type = $request->input('type');
+            $newproduct->amount = $request->input('amount');
+            $newproduct->date = $request->input('date');
+            $newproduct->save();
+            return redirect('/CheckView');
+        }
+        return view('check.addcheck');
+    }
+    public function CheckView()
+    {
+        $products = Check::all();
+        $arr = array('products' => $products);
+        $category = "Dinde";
+        return view('check.checkView', $arr, compact('category'));
+    }
+
+    public function DeleteCheck($id)
+    {
+        $product = Check::find($id);
+        $product->delete();
+        return redirect()->back();
+    }
+
+    public function ModifyCheck(Request $request, $id)
+    {
+
+        if ($request->isMethod('post')) {
+            $newproduct = Product::find($id);
+            $newproduct->name = $request->input('name');
+            $newproduct->category = $request->input('category');
+            $newproduct->buying_price = $request->input('buying_price');
+            $newproduct->selling_price = $request->input('selling_price');
+            $newproduct->unite = $request->input('unite');
+            $newproduct->quantity = $request->input('quantity');
+            $newproduct->save();
+            return redirect("/" . $request->input('category') . "View");
+        }
+
+        $product = Product::find($id);
+        $arr = array('product' => $product);
+        return view('products.ModifyProduct', $arr);
+    }
 }

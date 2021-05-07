@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -26,8 +26,8 @@ Route::get('/home', 'HomeController@index')->name('home');
                     DINDE CRUD
 ------------------------------------------------------------------- */
 Route::get('/DindeView', 'HomeController@DindeView');
-Route::get('/AddDindeProduct','HomeController@AddDindeProduct');
-Route::post('/AddDindeProduct','HomeController@AddDindeProduct');
+Route::get('/AddDindeProduct', 'HomeController@AddDindeProduct');
+Route::post('/AddDindeProduct', 'HomeController@AddDindeProduct');
 /*-----------------------------------------------------------------
                    END OF DINDE CRUD
 ------------------------------------------------------------------- */
@@ -36,8 +36,8 @@ Route::post('/AddDindeProduct','HomeController@AddDindeProduct');
                     Mortadelle CRUD
 ------------------------------------------------------------------- */
 Route::get('/MortadelleView', 'HomeController@MortadelleView');
-Route::get('/AddMortadelleProduct','HomeController@AddMortadelleProduct');
-Route::post('/AddMortadelleProduct','HomeController@AddMortadelleProduct');
+Route::get('/AddMortadelleProduct', 'HomeController@AddMortadelleProduct');
+Route::post('/AddMortadelleProduct', 'HomeController@AddMortadelleProduct');
 /*-----------------------------------------------------------------
                    END OF Mortadelle CRUD
 ------------------------------------------------------------------- */
@@ -46,13 +46,20 @@ Route::post('/AddMortadelleProduct','HomeController@AddMortadelleProduct');
                     Alimentation CRUD
 ------------------------------------------------------------------- */
 Route::get('/AlimentationView', 'HomeController@AlimentationView');
-Route::get('/AddAlimentationProduct','HomeController@AddAlimentationProduct');
-Route::post('/AddAlimentationProduct','HomeController@AddAlimentationProduct');
+Route::get('/AddAlimentationProduct', 'HomeController@AddAlimentationProduct');
+Route::post('/AddAlimentationProduct', 'HomeController@AddAlimentationProduct');
 /*-----------------------------------------------------------------
                    END OF Alimentation CRUD
 ------------------------------------------------------------------- */
 
-Route::get('/ModifyProduct/{id}','HomeController@ModifyProduct');
-Route::post('/ModifyProduct/{id}','HomeController@ModifyProduct');
-Route::get('/DeleteProduct/{id}','HomeController@DeleteProduct');
+Route::get('/ModifyProduct/{id}', 'HomeController@ModifyProduct');
+Route::post('/ModifyProduct/{id}', 'HomeController@ModifyProduct');
+Route::get('/DeleteProduct/{id}', 'HomeController@DeleteProduct');
 
+
+Route::get('/AddCheck', 'HomeController@addCheck');
+Route::post('/AddCheck', 'HomeController@addCheck');
+Route::post('/ModifyCheck/{id}', 'HomeController@ModifyCheck');
+Route::get('/DeleteCheck/{id}', 'HomeController@DeleteCheck');
+
+Route::get('/CheckView', 'HomeController@CheckView');
