@@ -100,8 +100,8 @@
                 <div id="collapseFourn" class="collapse" aria-labelledby="headingFourn" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">كريدي:</h6>
-                        <a class="collapse-item" href="/AddFournisseur">إضافة كريدي</a>
-                        <a class="collapse-item" href="/ViewFournisseur">الكريديات الحالية</a>
+                        <a class="collapse-item" href="/AddCredit">إضافة كريدي</a>
+                        <a class="collapse-item" href="/ViewCredit">الكريديات الحالية</a>
 
                     </div>
                 </div>
