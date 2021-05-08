@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Check;
 use Illuminate\Http\Request;
 use App\Product;
-
+use App\Credit;
 
 class HomeController extends Controller
 {
@@ -123,6 +123,56 @@ class HomeController extends Controller
     }
     /*-----------------------------------------------------------------
                END OF Alimentation CRUD
+------------------------------------------------------------------- */
+    /*-----------------------------------------------------------------
+                    Credit CRUD
+------------------------------------------------------------------- */
+
+    public function ViewCredit()
+    {
+        $credit = Credit::all();
+        $arr = array('credit' => $credit);
+        return view('Credits.CreditView', $arr);
+    }
+
+    public function AddCredit(Request $request)
+    {
+
+        if ($request->isMethod('post')) {
+            $newcredit = new Credit();
+            $newcredit->name = $request->input('name');
+            $newcredit->amount = $request->input('amount');
+            $newcredit->date = date('y-m-d');
+            $newcredit->save();
+            return redirect('/ViewCredit');
+        }
+        return view('Credits.AddCredit');
+    }
+    public function DeleteCredit($id)
+    {
+        $credit = Credit::find($id);
+        $credit->delete();
+        return redirect()->back();
+    }
+    public function ModifyCredit(Request $request, $id)
+    {
+
+        if ($request->isMethod('post')) {
+            $newcredit = Credit::find($id);
+            $newcredit->name = $request->input('name');
+            $newcredit->amount = $request->input('amount');
+            $newcredit->date = date('y-m-d');
+            $newcredit->save();
+            return redirect("/ViewCredit");
+        }
+
+        $credit = Credit::find($id);
+        $arr = array('credit' => $credit);
+        return view('Credits.ModifyCredit', $arr);
+    }
+
+    /*-----------------------------------------------------------------
+               END OF Credit CRUD
 ------------------------------------------------------------------- */
 
     public function DeleteProduct($id)

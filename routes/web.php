@@ -55,6 +55,22 @@ Route::post('/AddAlimentationProduct', 'HomeController@AddAlimentationProduct');
 Route::get('/ModifyProduct/{id}', 'HomeController@ModifyProduct');
 Route::post('/ModifyProduct/{id}', 'HomeController@ModifyProduct');
 Route::get('/DeleteProduct/{id}', 'HomeController@DeleteProduct');
+/*-----------------------------------------------------------------
+                    Credit CRUD
+------------------------------------------------------------------- */
+Route::get('/ViewCredit', 'HomeController@ViewCredit');
+Route::get('/AddCredit', 'HomeController@AddCredit');
+Route::post('/AddCredit', 'HomeController@AddCredit');
+Route::get('/ModifyCredit/{id}', 'HomeController@ModifyCredit');
+Route::post('/ModifyCredit/{id}', 'HomeController@ModifyCredit');
+Route::get('/DeleteCredit/{id}', 'HomeController@DeleteCredit');
+/*-----------------------------------------------------------------
+                   END OF Credit CRUD
+------------------------------------------------------------------- */
+
+Route::get('/ModifyProduct/{id}', 'HomeController@ModifyProduct');
+Route::post('/ModifyProduct/{id}', 'HomeController@ModifyProduct');
+Route::get('/DeleteProduct/{id}', 'HomeController@DeleteProduct');
 
 
 Route::get('/AddCheck', 'HomeController@addCheck');
