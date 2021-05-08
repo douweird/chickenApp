@@ -60,6 +60,6 @@ Route::get('/DeleteProduct/{id}', 'HomeController@DeleteProduct');
 Route::get('/AddCheck', 'HomeController@addCheck');
 Route::post('/AddCheck', 'HomeController@addCheck');
 Route::post('/ModifyCheck/{id}', 'HomeController@ModifyCheck');
+Route::get('/ModifyCheck/{id}', 'HomeController@ModifyCheck');
 Route::get('/DeleteCheck/{id}', 'HomeController@DeleteCheck');
-
 Route::get('/CheckView', 'HomeController@CheckView');

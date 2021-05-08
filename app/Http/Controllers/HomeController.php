@@ -185,19 +185,17 @@ class HomeController extends Controller
     {
 
         if ($request->isMethod('post')) {
-            $newproduct = Product::find($id);
+            $newproduct = Check::find($id);
             $newproduct->name = $request->input('name');
-            $newproduct->category = $request->input('category');
-            $newproduct->buying_price = $request->input('buying_price');
-            $newproduct->selling_price = $request->input('selling_price');
-            $newproduct->unite = $request->input('unite');
-            $newproduct->quantity = $request->input('quantity');
+            $newproduct->amount = $request->input('amount');
+            $newproduct->date = $request->input('date');
+            $newproduct->type = $request->input('type');
             $newproduct->save();
-            return redirect("/" . $request->input('category') . "View");
+            return redirect("/CheckView");
         }
 
-        $product = Product::find($id);
+        $product = Check::find($id);
         $arr = array('product' => $product);
-        return view('products.ModifyProduct', $arr);
+        return view('check.ModifyCheck', $arr);
     }
 }
