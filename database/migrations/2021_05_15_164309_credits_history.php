@@ -17,7 +17,7 @@ class CreditsHistory extends Migration
         //
         Schema::create('credits', function (Blueprint $table) {
             $table->id();
-            $table->string('credit_amount')->unique();
+            $table->float('credit_amount')->unique();
             $table->date('credit_date')->default(date("Y-m-d H:i:s"));
             $table->unsignedBigInteger('client_id');
             $table->foreign('client_id')->references('id')->on('clients');

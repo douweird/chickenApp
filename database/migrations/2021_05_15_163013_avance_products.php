@@ -15,7 +15,7 @@ class AvanceProducts extends Migration
     {
         //
         Schema::create('avanceProducts', function (Blueprint $table) {
-            $table->string('category')->primary()->unique();
+            $table->string('category', 100)->primary()->unique();
             $table->float('avance');
             $table->timestamps();
         });
