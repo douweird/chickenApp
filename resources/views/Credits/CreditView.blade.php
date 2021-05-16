@@ -6,7 +6,7 @@
     </div>
     <div class="card shadow mb-4">
         <div class="card-body">
-            <a id="" class="btn btn-success" id="" href={{ url('/AddCredit') }}><i class="fa fa-plus"></i> إضافة
+            <a id="" class="btn btn-success" id="" href={{ url('/ClientsView') }}><i class="fa fa-plus"></i> إضافة
                 كريدي</a><br /><br />
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

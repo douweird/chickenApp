@@ -28,7 +28,24 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $dinde = DB::select('select sum(buying_price*quantity) as total from products where category = ?', ['Dinde']);
+        $ali = DB::select('select sum(buying_price*quantity) as total from products where category = ?', ['Alimentation']);
+        $morta = DB::select('select sum(buying_price*quantity) as total from products where category = ?', ['Mortadelle']);
+        $total = $dinde[0]->total + $ali[0]->total + $morta[0]->total;
+        $checks = Check::all();
+        $final_checks = [];
+        foreach ($checks as $ch) {
+            $datem2 = date('Y-m-d', strtotime('-2 day', strtotime($ch->date)));
+            $now = date('Y-m-d');
+            if ($datem2 == $now) {
+                //dd($ch);
+                array_push($final_checks, $ch);
+            }
+        }
+        $credits = DB::select('select sum(credit_amount) as total from credits');
+        $credits = $credits[0]->total;
+        $arr = array('dinde' => $dinde[0]->total, 'ali' => $ali[0]->total, 'morta' => $morta[0]->total, 'total' => $total, 'checks' => $final_checks, 'credits' => $credits);
+        return view('home', $arr);
     }
 
     public function ClientCredits(Request $request, $id)
