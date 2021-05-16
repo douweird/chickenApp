@@ -60,12 +60,13 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                <a class="nav-link collapsed" href="#" data-toggle="collapse"" data-target=" #collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-warehouse"></i>
                     <span>المنتجات</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
+                    data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">المنتجات</h6>
                         <a class="collapse-item" href="/DindeView">لاداند</a>
@@ -84,8 +85,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">شيك و كمبيالات</h6>
-                        <a class="collapse-item" href="/AddClient">اضافة شيك أو كمبيالات</a>
-                        <a class="collapse-item" href="/ViewClient">الشيكات و كمبيالات الحالية</a>
+                        <a class="collapse-item" href="/AddCheck">اضافة شيك أو كمبيالات</a>
+                        <a class="collapse-item" href="/CheckView">الشيكات و كمبيالات الحالية</a>
 
                     </div>
                 </div>
@@ -100,8 +101,9 @@
                 <div id="collapseFourn" class="collapse" aria-labelledby="headingFourn" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">كريدي:</h6>
-                        <a class="collapse-item" href="/AddFournisseur">إضافة كريدي</a>
-                        <a class="collapse-item" href="/ViewFournisseur">الكريديات الحالية</a>
+
+                        <a class="collapse-item" href="/ClientsView"> الزبائن</a>
+                        <a class="collapse-item" href="/ViewCredit">الكريديات الحالية</a>
 
                     </div>
                 </div>
@@ -111,14 +113,14 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-user"></i>
-                    <span>Utilisateurs</span>
+                    <span>خداما</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Utilisateurs:</h6>
-                        <a class="collapse-item" href="/AddUser">Ajouter un utilisateur</a>
-                        <a class="collapse-item" href="/ViewUser">Lister les utilisateur</a>
+                        <h6 class="collapse-header">خداما</h6>
+                        <a class="collapse-item" href="/AddUser">إضافة خدام</a>
+                        <a class="collapse-item" href="/ViewUser">رؤية معلومات الخدامه</a>
                     </div>
                 </div>
             </li>
@@ -128,40 +130,21 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Factures
+                آخر
             </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-file-invoice"></i>
-                    <span>Transactions</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Transactions:</h6>
-                        <a class="collapse-item" href="/ShowClientFV">Vente</a>
-                        <a class="collapse-item" href="/ShowClientFP">Achat</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Autres:</h6>
-                        <a class="collapse-item" href="/ViewBonDeCommande">Payment des Employée</a>
-                    </div>
-                </div>
-            </li>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="/Graphes">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Graphes</span></a>
+                    <span>لحوانت</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="/Documents">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Historiques</span></a>
+                    <span>لكوارى</span></a>
             </li>
 
             <!-- Divider -->
