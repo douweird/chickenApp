@@ -59,8 +59,8 @@ Route::get('/DeleteProduct/{id}', 'HomeController@DeleteProduct');
                     Credit CRUD
 ------------------------------------------------------------------- */
 Route::get('/ViewCredit', 'HomeController@ViewCredit');
-Route::get('/AddCredit', 'HomeController@AddCredit');
-Route::post('/AddCredit', 'HomeController@AddCredit');
+Route::get('/AddCredit/{id}', 'HomeController@AddCredit');
+Route::post('/AddCredit/{id}', 'HomeController@AddCredit');
 Route::get('/ModifyCredit/{id}', 'HomeController@ModifyCredit');
 Route::post('/ModifyCredit/{id}', 'HomeController@ModifyCredit');
 Route::get('/DeleteCredit/{id}', 'HomeController@DeleteCredit');
@@ -79,3 +79,14 @@ Route::post('/ModifyCheck/{id}', 'HomeController@ModifyCheck');
 Route::get('/ModifyCheck/{id}', 'HomeController@ModifyCheck');
 Route::get('/DeleteCheck/{id}', 'HomeController@DeleteCheck');
 Route::get('/CheckView', 'HomeController@CheckView');
+
+Route::post('/addAvenceProduct', 'HomeController@addAvanceProduct');
+
+Route::get('/AddClient', 'HomeController@AddClientProduct');
+Route::post('/AddClient', 'HomeController@AddClientProduct');
+
+Route::get('/ClientsView', 'HomeController@ClientsView');
+
+
+
+Route::get('/ClientCredits/{id}', 'HomeController@ClientCredits');

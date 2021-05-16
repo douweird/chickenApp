@@ -23,9 +23,9 @@
                         @foreach ($credit as $crt)
                             <tr>
                                 <td>{{ $crt->id }}</td>
-                                <td>{{ $crt->name }}</td>
-                                <td>{{ $crt->amount }}</td>
-                                <td>{{ $crt->date }}</td>
+                                <td>{{ $crt->client->name }}</td>
+                                <td>{{ $crt->credit_amount }}</td>
+                                <td>{{ $crt->credit_date }}</td>
                                 <td>
                                     <center>
                                         <a class="btn btn-info" class="graph"

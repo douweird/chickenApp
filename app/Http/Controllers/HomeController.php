@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Check;
+use App\Client;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Credit;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -29,14 +31,61 @@ class HomeController extends Controller
         return view('home');
     }
 
+    public function ClientCredits(Request $request, $id)
+    {
+        $credits = Client::find($id)->credits()->get();
+        $arr = array('credits' => $credits);
+        return view('Credits.ClientsCredits', $arr);
+    }
+
+    public function ClientsView()
+    {
+        $clients = Client::all();
+        $arr = array('clients' => $clients);
+        return view('Credits.ClientsView', $arr);
+    }
+
+    public function AddClientProduct(Request $request)
+    {
+
+        if ($request->isMethod('post')) {
+            $newclient = new Client();
+            $newclient->name = $request->input('name');
+            $newclient->phone = $request->input('phone');
+            $newclient->save();
+            return redirect('/ClientsView');
+        }
+        return view('Credits.addclient');
+    }
+
     /*-----------------------------------------------------------------
                     DINDE CRUD
 ------------------------------------------------------------------- */
 
+
+    public function addAvanceProduct(Request $request)
+    {
+        //DB::insert('insert into avanceProducts (category,avance) values (?, ?)', [$request->category, $request->avance]);
+        $avance =
+            DB::select('select * from avanceProducts where category = ?', [$request->category]);
+        if (count($avance) == 0) {
+            DB::table('avanceProducts')
+                ->insert(['avance' => $request->avance, 'category' => $request->category]);
+        } else {
+            DB::table('avanceProducts')
+                ->where('category', $request->category)
+                ->update(['avance' => $request->avance, 'category' => $request->category]);
+        }
+
+        return redirect()->back();
+    }
+
     public function DindeView()
     {
         $products = Product::where('category', 'Dinde')->get();
-        $arr = array('products' => $products);
+        $avance =
+            DB::select('select * from avanceProducts where category = ?', ['Dinde']);
+        $arr = array('products' => $products, 'avance' => $avance);
         $category = "Dinde";
         return view('products.ProductView', $arr, compact('category'));
     }
@@ -50,7 +99,6 @@ class HomeController extends Controller
             $newproduct->category = "Dinde";
             $newproduct->buying_price = $request->input('buying_price');
             $newproduct->selling_price = $request->input('selling_price');
-            $newproduct->unite = $request->input('unite');
             $newproduct->quantity = $request->input('quantity');
             $newproduct->save();
             return redirect('/DindeView');
@@ -68,7 +116,9 @@ class HomeController extends Controller
     public function MortadelleView()
     {
         $products = Product::where('category', 'Mortadelle')->get();
-        $arr = array('products' => $products);
+        $avance =
+            DB::select('select * from avanceProducts where category = ?', ['Mortadelle']);
+        $arr = array('products' => $products, 'avance' => $avance);
         $category = "Mortadelle";
         return view('products.ProductView', $arr, compact('category'));
     }
@@ -82,7 +132,6 @@ class HomeController extends Controller
             $newproduct->category = "Mortadelle";
             $newproduct->buying_price = $request->input('buying_price');
             $newproduct->selling_price = $request->input('selling_price');
-            $newproduct->unite = $request->input('unite');
             $newproduct->quantity = $request->input('quantity');
             $newproduct->save();
             return redirect('/MortadelleView');
@@ -100,7 +149,9 @@ class HomeController extends Controller
     public function AlimentationView()
     {
         $products = Product::where('category', 'Alimentation')->get();
-        $arr = array('products' => $products);
+        $avance =
+            DB::select('select * from avanceProducts where category = ?', ['Alimentation']);
+        $arr = array('products' => $products, 'avance' => $avance);
         $category = "Alimentation";
         return view('products.ProductView', $arr, compact('category'));
     }
@@ -114,7 +165,6 @@ class HomeController extends Controller
             $newproduct->category = "Alimentation";
             $newproduct->buying_price = $request->input('buying_price');
             $newproduct->selling_price = $request->input('selling_price');
-            $newproduct->unite = $request->input('unite');
             $newproduct->quantity = $request->input('quantity');
             $newproduct->save();
             return redirect('/AlimentationView');
@@ -135,18 +185,19 @@ class HomeController extends Controller
         return view('Credits.CreditView', $arr);
     }
 
-    public function AddCredit(Request $request)
+    public function AddCredit(Request $request, $id)
     {
 
         if ($request->isMethod('post')) {
             $newcredit = new Credit();
-            $newcredit->name = $request->input('name');
-            $newcredit->amount = $request->input('amount');
-            $newcredit->date = date('y-m-d');
+            $newcredit->client_id = $id;
+            $newcredit->credit_amount = $request->input('amount');
+            $newcredit->credit_date = $request->input('date') == null ? date('y-m-d') : $request->input('date');
             $newcredit->save();
-            return redirect('/ViewCredit');
+            return redirect('/ClientsView');
         }
-        return view('Credits.AddCredit');
+        $arr = array('id' => $id);
+        return view('Credits.AddCredit', $arr);
     }
     public function DeleteCredit($id)
     {
@@ -191,7 +242,6 @@ class HomeController extends Controller
             $newproduct->category = $request->input('category');
             $newproduct->buying_price = $request->input('buying_price');
             $newproduct->selling_price = $request->input('selling_price');
-            $newproduct->unite = $request->input('unite');
             $newproduct->quantity = $request->input('quantity');
             $newproduct->save();
             return redirect("/" . $request->input('category') . "View");

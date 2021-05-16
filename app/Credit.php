@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Credit extends Model
 {
-    public $table="Credits";
-    
+    public $table = "credits";
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class, 'client_id');
+    }
 }
