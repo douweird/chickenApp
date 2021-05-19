@@ -19,6 +19,7 @@
                             <th>ثمن البيع</th>
                             <th>كمية </th>
                             <th>المجموع</th>
+                            <th>الربح</th>
                             <th>أجراءات</th>
                         </tr>
                     </thead>
@@ -33,6 +34,7 @@
                                     <td>{{ $prd->selling_price }}</td>
                                     <td>{{ $prd->quantity }}</td>
                                     <td>{{ $prd->quantity * $prd->buying_price }}</td>
+                                    <td>{{ ($prd->selling_price - $prd->buying_price) * $prd->quantity }}</td>
                                     <td>
                                         <center>
                                             <a class="btn btn-info" class="graph"

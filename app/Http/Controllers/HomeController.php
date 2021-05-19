@@ -47,7 +47,8 @@ class HomeController extends Controller
         $credits = DB::select('select sum(credit_amount) as total from credits');
         $credits = $credits[0]->total;
         $alfinfo  = DB::table('stockAlf')->latest()->first();
-        $arr = array('dinde' => $dinde[0]->total, 'ali' => $ali[0]->total, 'morta' => $morta[0]->total, 'total' => $total, 'checks' => $final_checks, 'credits' => $credits, 'alfinfo' => $alfinfo);
+        $clients = Client::all();
+        $arr = array('dinde' => $dinde[0]->total, 'ali' => $ali[0]->total, 'morta' => $morta[0]->total, 'total' => $total, 'checks' => $final_checks, 'credits' => $credits, 'alfinfo' => $alfinfo, 'clients' => $clients->count());
         return view('home', $arr);
     }
 
@@ -115,6 +116,30 @@ class HomeController extends Controller
         $credits = Client::find($id)->credits()->get();
         $arr = array('credits' => $credits);
         return view('Credits.ClientsCredits', $arr);
+    }
+
+    public function DeleteClient($id)
+    {
+        $credit = Client::find($id);
+        $credit->credits()->delete();
+        $credit->delete();
+        return redirect()->back();
+    }
+
+    public function ModifyClient(Request $request, $id)
+    {
+
+        if ($request->isMethod('post')) {
+            $newproduct = Client::find($id);
+            $newproduct->name = $request->input('name');
+            $newproduct->phone = $request->input('phone');
+            $newproduct->save();
+            return redirect('/ClientsView');
+        }
+
+        $product = Client::find($id);
+        $arr = array('credit' => $product);
+        return view('Credits.ModifyClient', $arr);
     }
 
     public function ClientsView()

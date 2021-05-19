@@ -72,9 +72,7 @@
                                 <td>{{ $crt->sold }}</td>
                                 <td>
                                     <center>
-                                        <a class="btn btn-info" class="graph"
-                                            href="{{ url('/ModifyCredit/' . $crt->id) }}"><i
-                                                class="fa fa-pencil-alt"></i></a>
+
                                         <a class="btn btn-danger" class="graph"
                                             href="{{ url('/deletealf/' . $crt->id) }}"><i
                                                 class="fa fa-trash-alt"></i></a>

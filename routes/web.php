@@ -84,6 +84,9 @@ Route::post('/addAvenceProduct', 'HomeController@addAvanceProduct');
 
 Route::get('/AddClient', 'HomeController@AddClientProduct');
 Route::post('/AddClient', 'HomeController@AddClientProduct');
+Route::get('/DeleteClient/{id}', 'HomeController@DeleteClient');
+Route::get('/ModifyClient/{id}', 'HomeController@ModifyClient');
+Route::post('/ModifyClient/{id}', 'HomeController@ModifyClient');
 
 Route::get('/ClientsView', 'HomeController@ClientsView');
 

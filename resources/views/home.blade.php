@@ -118,25 +118,47 @@
             <h1 class="h3 mb-0 text-gray-800"> الكريديات الحالية</h1>
         </a>
     </div>
-
-    <div class="col-xl-3 col-md-6 mb-4">
-        <a class="card border-left-info shadow h-100 py-2" href="/ViewCredit">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">المجموع</div>
-                        <div class="row no-gutters align-items-center">
-                            <div class="col-auto">
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $credits ?? 0 }} درهم</div>
+    <div class="row">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <a class="card border-left-info shadow h-100 py-2" href="/ViewCredit">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">المجموع</div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $credits ?? 0 }} درهم
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        <div class="col-auto">
+                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </a>
+            </a>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <a class="card border-left-info shadow h-100 py-2" href="/ClientsView">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">الزبائن</div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $clients ?? 0 }} زبون
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
     </div>
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -153,7 +175,8 @@
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">العلف (kg) </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $alfinfo->alf ?? 0 }} كيلو
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $alfinfo->alf ?? 0 }}
+                                        كيلو
                                         علف
                                     </div>
                                 </div>
