@@ -81,7 +81,9 @@
     </div>
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">تقارير الشيكات و كمبيالات </h1>
+        <a href="/CheckView">
+            <h1 class="h3 mb-0 text-gray-800">تقارير الشيكات و كمبيالات</h1>
+        </a>
     </div>
     <div class="row">
         @foreach ($checks as $ck)
@@ -112,7 +114,9 @@
     </div>
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800"> الكريديات الحالية </h1>
+        <a href="/ViewCredit">
+            <h1 class="h3 mb-0 text-gray-800"> الكريديات الحالية</h1>
+        </a>
     </div>
 
     <div class="col-xl-3 col-md-6 mb-4">
@@ -133,6 +137,56 @@
                 </div>
             </div>
         </a>
+    </div>
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <a href="/lkwaraView">
+            <h1 class="h3 mb-0 text-gray-800">لكوارى</h1>
+        </a>
+    </div>
+    <div class="row">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <a class="card border-left-info shadow h-100 py-2" href="/lkwaraView">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">العلف (kg) </div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $alfinfo->alf ?? 0 }} كيلو
+                                        علف
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <a class="card border-left-info shadow h-100 py-2" href="/lkwaraView">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">الفلوس </div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $alfinfo->falos ?? 0 }}
+                                        فلوس
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
     </div>
 
 @endsection

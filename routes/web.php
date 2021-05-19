@@ -90,3 +90,9 @@ Route::get('/ClientsView', 'HomeController@ClientsView');
 
 
 Route::get('/ClientCredits/{id}', 'HomeController@ClientCredits');
+
+
+Route::get('/lkwaraView/', 'HomeController@lkwaraView');
+Route::post('/addalf/', 'HomeController@addalf');
+Route::get('/deletealf/{id}', 'HomeController@deletealf');
+Route::get('/clearAlf/', 'HomeController@clearAlf');

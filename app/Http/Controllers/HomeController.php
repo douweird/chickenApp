@@ -7,6 +7,7 @@ use App\Client;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Credit;
+use App\kwara;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -28,6 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+
         $dinde = DB::select('select sum(buying_price*quantity) as total from products where category = ?', ['Dinde']);
         $ali = DB::select('select sum(buying_price*quantity) as total from products where category = ?', ['Alimentation']);
         $morta = DB::select('select sum(buying_price*quantity) as total from products where category = ?', ['Mortadelle']);
@@ -44,8 +46,68 @@ class HomeController extends Controller
         }
         $credits = DB::select('select sum(credit_amount) as total from credits');
         $credits = $credits[0]->total;
-        $arr = array('dinde' => $dinde[0]->total, 'ali' => $ali[0]->total, 'morta' => $morta[0]->total, 'total' => $total, 'checks' => $final_checks, 'credits' => $credits);
+        $alfinfo  = DB::table('stockAlf')->latest()->first();
+        $arr = array('dinde' => $dinde[0]->total, 'ali' => $ali[0]->total, 'morta' => $morta[0]->total, 'total' => $total, 'checks' => $final_checks, 'credits' => $credits, 'alfinfo' => $alfinfo);
         return view('home', $arr);
+    }
+
+
+    public function addalf(Request $request)
+    {
+        $kwara = kwara::all();
+        if ($kwara->count() == 0) {
+            $kwara = new kwara();
+            $kwara->day = 0;
+            $kwara->alf = $request->input('alf') ?? 0;
+            $kwara->falos = $request->input('falos') ?? 0;
+            $kwara->dead =  0;
+            $kwara->sold =  0;
+            $kwara->save();
+            $arr = array('kwara' => $kwara);
+            return redirect('/lkwaraView');
+        } else {
+            $kwara_last = DB::table('stockAlf')->latest()->first();
+            $kwara = new kwara();
+            $kwara->day = ($kwara_last->day ?? 0) + 1;
+            $kwara->alf =  $kwara_last->alf - ($request->input('alf') ?? 0);
+            $kwara->falos = $kwara_last->falos - ($request->input('dead') ?? 0) - ($request->input('sold')  ?? 0);
+            $kwara->dead = $request->input('dead') ?? 0;
+            $kwara->sold = $request->input('sold') ?? 0;
+            $kwara->save();
+            $arr = array('kwara' => $kwara);
+            return redirect('/lkwaraView');
+        }
+    }
+    public function deletealf($id)
+    {
+
+        $product = kwara::find($id);
+        $product->delete();
+        return redirect('/lkwaraView');
+    }
+    public function clearAlf()
+    {
+        kwara::query()->truncate();
+        return redirect('/lkwaraView');
+    }
+
+    public function lkwaraView()
+    {
+        //dd($kwara_last = DB::table('stockAlf')->latest()->first());
+        $kwara = kwara::all();
+        //dd($kwara->count());
+        if ($kwara->count() == 10) {
+            $rest_alf = kwara::where('day', 0)->first()->alf;
+            $rest_flales = kwara::where('day', 0)->first()->falos;
+            foreach ($kwara as $k) {
+                $rest_alf -= $k->alf;
+                $rest_flales -= $k->dead;
+                $rest_flales -= $k->sold;
+                //dd($rest_flales);
+            }
+        }
+        $arr = array('kwara' => $kwara);
+        return view('lkwara.lkwaraView', $arr);
     }
 
     public function ClientCredits(Request $request, $id)

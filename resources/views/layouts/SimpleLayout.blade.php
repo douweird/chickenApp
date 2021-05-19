@@ -142,7 +142,7 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="/Documents">
+                <a class="nav-link" href="/lkwaraView">
                     <i class="fas fa-fw fa-table"></i>
                     <span>لكوارى</span></a>
             </li>
