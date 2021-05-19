@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCreditsTable extends Migration
+class Checks extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateCreditsTable extends Migration
      */
     public function up()
     {
-        Schema::create('credits', function (Blueprint $table) {
+        //
+        Schema::create('checks', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->float('amount');
+            $table->string('amount', 100);
+            $table->string('type', 100);
             $table->date('date');
+            $table->string('payed')->default('no');
+            $table->string('name', 100);
             $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ class CreateCreditsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('credits');
+        //
     }
 }
