@@ -40,7 +40,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary btn-user float-right">
-            Modifier
+            تعديل
         </button>
     </form>
 @endsection

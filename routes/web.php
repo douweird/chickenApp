@@ -99,3 +99,21 @@ Route::get('/lkwaraView/', 'HomeController@lkwaraView');
 Route::post('/addalf/', 'HomeController@addalf');
 Route::get('/deletealf/{id}', 'HomeController@deletealf');
 Route::get('/clearAlf/', 'HomeController@clearAlf');
+
+/*-----------------------------------------------------------------
+                    Employee CRUD
+------------------------------------------------------------------- */
+Route::get('/ViewEmployees', 'HomeController@ViewEmployees');
+Route::get('/AddEmploye', 'HomeController@AddEmploye');
+Route::post('/AddEmploye', 'HomeController@AddEmploye');
+Route::get('/ModifyEmploye/{id}', 'HomeController@ModifyEmploye');
+Route::post('/ModifyEmploye/{id}', 'HomeController@ModifyEmploye');
+Route::get('/DeleteEmploye/{id}', 'HomeController@DeleteEmploye');
+Route::get('/AddAvance/{id}', 'HomeController@AddAvance');
+Route::post('/AddAvance/{id}', 'HomeController@AddAvance');
+Route::get('/ViewAvances/{id}/{name}', 'HomeController@ViewAvance');
+Route::get('/EmployeSync/{id}', 'HomeController@EmployeSync');
+
+/*-----------------------------------------------------------------
+                   END OF Employee CRUD
+------------------------------------------------------------------- */

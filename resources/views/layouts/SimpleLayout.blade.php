@@ -119,8 +119,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">خداما</h6>
-                        <a class="collapse-item" href="/AddUser">إضافة خدام</a>
-                        <a class="collapse-item" href="/ViewUser">رؤية معلومات الخدامه</a>
+                        <a class="collapse-item" href="/AddEmploye">إضافة خدام</a>
+                        <a class="collapse-item" href="/ViewEmployees">رؤية معلومات الخدامه</a>
                     </div>
                 </div>
             </li>

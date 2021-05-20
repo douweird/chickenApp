@@ -8,7 +8,10 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Credit;
 use App\kwara;
+use App\Employe;
+use App\Avance;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -402,4 +405,86 @@ class HomeController extends Controller
         $arr = array('product' => $product);
         return view('check.ModifyCheck', $arr);
     }
+
+    public function AddEmploye(Request $request)
+    {
+
+        if ($request->isMethod('post')) {
+            $newemploye = new Employe();
+            $newemploye->name = $request->input('name');
+            $newemploye->phone_number = $request->input('phone_number');
+            $newemploye->salary = $request->input('salary');
+            $newemploye->work_placement = $request->input('work_placement');
+            $newemploye->date_to_pay = $request->input('date_to_pay');
+            $newemploye->save();
+            return redirect('/ViewEmployees');
+        }
+        return view('employees.AddEmploye');
+    }
+
+    public function ViewEmployees()
+    {
+        $employees = DB::table('employees')->leftJoin('avances','employees.id','=','avances.employe_id')
+        ->select('employees.id','name','work_placement','phone_number','date_to_pay','salary',DB::raw('sum(amount) as avance_totale'))
+        ->groupBy('employees.id')
+        ->get();
+        $arr = array('employees' => $employees);
+        return view('employees.ViewEmployees', $arr);
+    }
+    public function AddAvance(Request $request,$id)
+    {
+
+        if ($request->isMethod('post')) {
+            $newavance = new Avance();
+            $newavance->amount = $request->input('amount');
+            $newavance->avance_date = date('y-m-d');
+            $newavance->employe_id=$id;
+            $newavance->save();
+            return redirect('/ViewEmployees');
+        }
+        $arr = array('id' => $id );
+        return view('employees.AddAvance',$arr);
+    }
+
+    public function ModifyEmploye(Request $request, $id)
+    {
+
+        if ($request->isMethod('post')) {
+            $newemploye = Employe::find($id);
+            $newemploye->name = $request->input('name');
+            $newemploye->phone_number = $request->input('phone_number');
+            $newemploye->work_placement = $request->input('work_placement');
+            $newemploye->date_to_pay = $request->input('date_to_pay');
+            $newemploye->salary = $request->input('salary');
+            $newemploye->save();
+            return redirect('/ViewEmployees');
+        }
+
+        $employe = Employe::find($id);
+        $arr = array('employe' => $employe);
+        return view('employees.ModifyEmploye', $arr);
+    }
+    public function DeleteEmploye($id)
+    {
+        $employe = Employe::find($id);
+        $employe->delete();
+        return redirect()->back();
+    }
+    
+    public function ViewAvance($id,$name)
+    {
+        $avances = DB::table('avances')->Join('employees','employees.id','=','avances.employe_id')
+        ->select('avances.id','employees.name','amount','avance_date')
+        ->where('employees.id',$id)
+        ->get();
+        $arr = array('avances' => $avances,'name'=>$name);
+        return view('employees.ViewAvance', $arr);
+    }
+    public function EmployeSync($id)
+    {
+            $avance = Avance::Where('employe_id',$id);
+            $avance->delete();
+            return redirect()->back();
+    }
 }
+
