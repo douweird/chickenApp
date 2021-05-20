@@ -424,26 +424,26 @@ class HomeController extends Controller
 
     public function ViewEmployees()
     {
-        $employees = DB::table('employees')->leftJoin('avances','employees.id','=','avances.employe_id')
-        ->select('employees.id','name','work_placement','phone_number','date_to_pay','salary',DB::raw('sum(amount) as avance_totale'))
-        ->groupBy('employees.id')
-        ->get();
+        $employees = DB::table('employees')->leftJoin('avances', 'employees.id', '=', 'avances.employe_id')
+            ->select('employees.id', 'name', 'work_placement', 'phone_number', 'date_to_pay', 'salary', DB::raw('sum(amount) as avance_totale'))
+            ->groupBy('employees.id')
+            ->get();
         $arr = array('employees' => $employees);
         return view('employees.ViewEmployees', $arr);
     }
-    public function AddAvance(Request $request,$id)
+    public function AddAvance(Request $request, $id)
     {
 
         if ($request->isMethod('post')) {
             $newavance = new Avance();
             $newavance->amount = $request->input('amount');
             $newavance->avance_date = date('y-m-d');
-            $newavance->employe_id=$id;
+            $newavance->employe_id = $id;
             $newavance->save();
             return redirect('/ViewEmployees');
         }
-        $arr = array('id' => $id );
-        return view('employees.AddAvance',$arr);
+        $arr = array('id' => $id);
+        return view('employees.AddAvance', $arr);
     }
 
     public function ModifyEmploye(Request $request, $id)
@@ -470,21 +470,26 @@ class HomeController extends Controller
         $employe->delete();
         return redirect()->back();
     }
-    
-    public function ViewAvance($id,$name)
+
+    public function ViewAvance($id, $name)
     {
-        $avances = DB::table('avances')->Join('employees','employees.id','=','avances.employe_id')
-        ->select('avances.id','employees.name','amount','avance_date')
-        ->where('employees.id',$id)
-        ->get();
-        $arr = array('avances' => $avances,'name'=>$name);
+        $avances = DB::table('avances')->Join('employees', 'employees.id', '=', 'avances.employe_id')
+            ->select('avances.id', 'employees.name', 'amount', 'avance_date')
+            ->where('employees.id', $id)
+            ->get();
+        $arr = array('avances' => $avances, 'name' => $name);
         return view('employees.ViewAvance', $arr);
     }
     public function EmployeSync($id)
     {
-            $avance = Avance::Where('employe_id',$id);
-            $avance->delete();
-            return redirect()->back();
+        $avance = Avance::Where('employe_id', $id);
+        $avance->delete();
+        return redirect()->back();
+    }
+    public function getKoriEmployees()
+    {
+        $employees = Employe::Where('employe_id', 'kori');
+        $arr = array('employees' => $employees);
+        return view('employees.ViewKori', $arr);
     }
 }
-

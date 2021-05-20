@@ -113,7 +113,9 @@ Route::get('/AddAvance/{id}', 'HomeController@AddAvance');
 Route::post('/AddAvance/{id}', 'HomeController@AddAvance');
 Route::get('/ViewAvances/{id}/{name}', 'HomeController@ViewAvance');
 Route::get('/EmployeSync/{id}', 'HomeController@EmployeSync');
+Route::get('/EmployeSync/{id}', 'HomeController@EmployeSync');
 
+Route::get('/ViewKori/', 'HomeController@getKoriEmployees');
 /*-----------------------------------------------------------------
                    END OF Employee CRUD
 ------------------------------------------------------------------- */

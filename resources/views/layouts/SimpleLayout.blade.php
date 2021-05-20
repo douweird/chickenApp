@@ -65,8 +65,7 @@
                     <i class="fas fa-fw fa-warehouse"></i>
                     <span>المنتجات</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                    data-parent="#accordionSidebar">
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">المنتجات</h6>
                         <a class="collapse-item" href="/DindeView">لاداند</a>
@@ -135,7 +134,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="/Graphes">
+                <a class="nav-link" href="/ViewKori">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>لحوانت</span></a>
             </li>

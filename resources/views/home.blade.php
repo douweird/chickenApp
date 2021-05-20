@@ -210,6 +210,12 @@
                 </div>
             </a>
         </div>
+
+    </div>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <a href="/ViewEmployees">
+            <h1 class="h3 mb-0 text-gray-800">تقارير الخداما </h1>
+        </a>
     </div>
 
 @endsection
