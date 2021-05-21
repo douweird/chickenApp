@@ -116,6 +116,9 @@ Route::get('/EmployeSync/{id}', 'HomeController@EmployeSync');
 Route::get('/EmployeSync/{id}', 'HomeController@EmployeSync');
 
 Route::get('/ViewKori/', 'HomeController@getKoriEmployees');
+
 /*-----------------------------------------------------------------
                    END OF Employee CRUD
 ------------------------------------------------------------------- */
+Route::get('/orderView/{category}', 'HomeController@orderView');
+Route::post('/orderView/{category}', 'HomeController@orderView');

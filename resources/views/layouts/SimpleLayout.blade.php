@@ -50,6 +50,12 @@
                     <span>لوحة القيادة</span></a>
             </li>
 
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ url('/orderView/Dinde') }}">
+                    <i class="fas fa-fw fa-list"></i>
+                    <span> إضافة فاتورة</span></a>
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 

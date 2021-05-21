@@ -488,8 +488,26 @@ class HomeController extends Controller
     }
     public function getKoriEmployees()
     {
-        $employees = Employe::Where('employe_id', 'kori');
+        $employees = Employe::Where('work_placement', 'kori');
         $arr = array('employees' => $employees);
         return view('employees.ViewKori', $arr);
+    }
+
+    public function orderView(Request $request, $category)
+    {
+        if ($request->isMethod('post')) {/*
+            $newavance = new Avance();
+            $newavance->amount = $request->input('amount');
+            $newavance->avance_date = date('y-m-d');
+            $newavance->employe_id = $id;
+            $newavance->save();*/
+            $product = Product::find($request->input('product'));
+            $product->quantity = $product->quantity - $request->input('quantity');
+            $product->save();
+            return redirect('/orderView/Dinde');
+        }
+        $products = Product::where('category', $category)->get();
+        $arr = array('products' => $products, 'category' => $category);
+        return view('orders.orderView', $arr);
     }
 }
