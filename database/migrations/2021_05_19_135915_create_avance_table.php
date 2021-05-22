@@ -18,7 +18,7 @@ class CreateAvanceTable extends Migration
             $table->float('amount');
             $table->date('avance_date');
             $table->integer('employe_id')->unsigned();
-            $table->foreign('employe_id')->references('id')->on('employees');  
+            /*$table->foreign('employe_id')->references('id')->on('employees');  */
             $table->timestamps();
         });
     }

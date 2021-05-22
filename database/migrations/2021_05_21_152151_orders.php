@@ -19,6 +19,7 @@ class Orders extends Migration
             $table->string('category', 100);
             $table->string('product', 100);
             $table->float('amount')->unsigned();
+            $table->float('total')->unsigned();
             $table->timestamps();
         });
     }

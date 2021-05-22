@@ -122,3 +122,5 @@ Route::get('/ViewKori/', 'HomeController@getKoriEmployees');
 ------------------------------------------------------------------- */
 Route::get('/orderView/{category}', 'HomeController@orderView');
 Route::post('/orderView/{category}', 'HomeController@orderView');
+
+Route::get('/dashboard', 'HomeController@dashboard');

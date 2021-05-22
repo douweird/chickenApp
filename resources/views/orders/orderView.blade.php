@@ -5,7 +5,7 @@
         <h1 class="h3 mb-0 text-gray-800">إضافة فاتورة</h1>
     </div>
 
-    <form method="post" action="{{ url('/orderView/d') }}">
+    <form method="post" action="{{ url('/orderView/' . $category) }}">
         {{ csrf_field() }}
         <div class="form-group row">
             <label for="name" class="col-sm-2 col-form-label">الفئة</label>
@@ -21,7 +21,7 @@
             <div class="col-sm-4">
                 <select name="product" required name="work_placement" id="work_placement" class="form-control">
                     @foreach ($products as $prd)
-                        <option value="{{ $prd->id }}"> {{ $prd->name }} ({{ $prd->selling_price }} DH)</option>
+                        <option value="{{ $prd->name }}"> {{ $prd->name }} ({{ $prd->selling_price }} DH)</option>
                     @endforeach
                 </select>
             </div>
@@ -29,7 +29,7 @@
         <div class="form-group row">
             <label for="quantity" class="col-sm-2 col-form-label">كمية (kg)</label>
             <div class="col-sm-4">
-                <input type="number" required step="0.1" class="form-control" id="quantity" placeholder="" name="quantity"
+                <input type="number" required step="0.01" class="form-control" id="quantity" placeholder="" name="quantity"
                     value="{{ old('quantity') }}" />
             </div>
 

@@ -56,6 +56,12 @@
                     <span> إضافة فاتورة</span></a>
             </li>
 
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ url('/dashboard') }}">
+                    <i class="fas fa-fw fa-list"></i>
+                    <span> المبيعات</span></a>
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 

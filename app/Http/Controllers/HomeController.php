@@ -10,6 +10,7 @@ use App\Credit;
 use App\kwara;
 use App\Employe;
 use App\Avance;
+use App\Order;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
@@ -495,19 +496,76 @@ class HomeController extends Controller
 
     public function orderView(Request $request, $category)
     {
-        if ($request->isMethod('post')) {/*
-            $newavance = new Avance();
-            $newavance->amount = $request->input('amount');
-            $newavance->avance_date = date('y-m-d');
-            $newavance->employe_id = $id;
-            $newavance->save();*/
-            $product = Product::find($request->input('product'));
+        if ($request->isMethod('post')) {
+            $product = Product::where('name', $request->input('product'))->first();
             $product->quantity = $product->quantity - $request->input('quantity');
             $product->save();
+
+            $order = new Order();
+            $order->category = $category;
+            $order->product = $request->input('product');
+            $order->amount = $request->input('quantity');
+            $order->total = $product->selling_price * $order->amount;
+            $order->save();
             return redirect('/orderView/Dinde');
         }
         $products = Product::where('category', $category)->get();
         $arr = array('products' => $products, 'category' => $category);
         return view('orders.orderView', $arr);
+    }
+
+    public function dashboard()
+    {
+        $date_day = Carbon::now()->startOfMonth();
+        $TotaldayDinde = DB::table('orders')
+            ->where('created_at', '>', $date_day)
+            ->where('category', '=', 'Dinde')
+            ->sum('total');
+        $TotaldayAli = DB::table('orders')
+            ->where('created_at', '>', $date_day)
+            ->where('category', '=', 'Alimentation')
+            ->sum('total');
+        $TotaldayMorta = DB::table('orders')
+            ->where('created_at', '>', $date_day)
+            ->where('category', '=', 'Mortadelle')
+            ->sum('total');
+
+        $date_month = Carbon::now()->startOfMonth();
+        $TotalMonthDinde = DB::table('orders')
+            ->where('created_at', '>', $date_month)
+            ->where('category', '=', 'Dinde')
+            ->sum('total');
+        $TotalMonthAli = DB::table('orders')
+            ->where('created_at', '>', $date_month)
+            ->where('category', '=', 'Alimentation')
+            ->sum('total');
+        $TotalMonthMorta = DB::table('orders')
+            ->where('created_at', '>', $date_month)
+            ->where('category', '=', 'Mortadelle')
+            ->sum('total');
+
+        $date_year = Carbon::now()->startOfYear();
+        $TotalYearDinde = DB::table('orders')
+            ->where('created_at', '>', $date_year)
+            ->where('category', '=', 'Dinde')
+            ->sum('total');
+        $TotalYearAli = DB::table('orders')
+            ->where('created_at', '>', $date_year)
+            ->where('category', '=', 'Alimentation')
+            ->sum('total');
+        $TotalYearMorta = DB::table('orders')
+            ->where('created_at', '>', $date_year)
+            ->where('category', '=', 'Mortadelle')
+            ->sum('total');
+
+
+
+        $orders = Order::all();
+        $arr = array(
+            'orders' => $orders, 'dinde_day' => $TotaldayDinde, 'ali_day' => $TotaldayAli, 'morta_day' => $TotaldayMorta,
+            'TotalMonthDinde' => $TotalMonthDinde, 'TotalMonthAli' => $TotalMonthAli, 'TotalMonthMorta' => $TotalMonthMorta,
+            'TotalYearDinde' => $TotalYearDinde, 'TotalYearAli' => $TotalYearAli, 'TotalYearMorta' => $TotalYearMorta
+        );
+        return view('orders.dashboard', $arr);
     }
 }
