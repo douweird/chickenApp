@@ -5,7 +5,7 @@
         <h1 class="h3 mb-0 text-gray-800">إضافة كريدي</h1>
     </div>
 
-    <form method="post" action="{{ url('/AddCredit/' . $id) }}">
+    <form method="post" action="{{ url('/AddCredit/' . $id . '?order_id=' . Request::get('order_id')) }}">
         {{ csrf_field() }}
         <div class="form-group row">
             <label for="Amount" class="col-sm-2 col-form-label">المبلغ</label>

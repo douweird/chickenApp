@@ -292,15 +292,23 @@ class HomeController extends Controller
         $arr = array('credit' => $credit);
         return view('Credits.CreditView', $arr);
     }
+    public function orderCredit(Request $request, $id)
+    {
+        $credit = Order::where('id', $id)->get();
+        $arr = array('orders' => $credit);
+        return view('orders.orderCredit', $arr);
+    }
 
     public function AddCredit(Request $request, $id)
     {
 
         if ($request->isMethod('post')) {
+
             $newcredit = new Credit();
             $newcredit->client_id = $id;
             $newcredit->credit_amount = $request->input('amount');
             $newcredit->credit_date = $request->input('date') == null ? date('y-m-d') : $request->input('date');
+            $newcredit->order_id = $request->input('order_id') ?? null;
             $newcredit->save();
             return redirect('/ClientsView');
         }
@@ -497,6 +505,7 @@ class HomeController extends Controller
     public function orderView(Request $request, $category)
     {
         if ($request->isMethod('post')) {
+
             $product = Product::where('name', $request->input('product'))->first();
             $product->quantity = $product->quantity - $request->input('quantity');
             $product->save();
@@ -507,10 +516,15 @@ class HomeController extends Controller
             $order->amount = $request->input('quantity');
             $order->total = $product->selling_price * $order->amount;
             $order->save();
+            if ($request->input('client_id')) {
+                return redirect('/AddCredit/' . $request->input('client_id') . '?order_id=' . $order->id);
+            }
+
             return redirect('/orderView/Dinde');
         }
         $products = Product::where('category', $category)->get();
-        $arr = array('products' => $products, 'category' => $category);
+        $clients = Client::all();
+        $arr = array('products' => $products, 'category' => $category, 'clients' => $clients);
         return view('orders.orderView', $arr);
     }
 

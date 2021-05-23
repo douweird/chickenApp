@@ -19,7 +19,7 @@
             </div>
             <label for="category" class="col-sm-2 col-form-label">النوع</label>
             <div class="col-sm-4">
-                <select name="product" required name="work_placement" id="work_placement" class="form-control">
+                <select class="form-control" name="product" required>
                     @foreach ($products as $prd)
                         <option value="{{ $prd->name }}"> {{ $prd->name }} ({{ $prd->selling_price }} DH)</option>
                     @endforeach
@@ -31,6 +31,21 @@
             <div class="col-sm-4">
                 <input type="number" required step="0.01" class="form-control" id="quantity" placeholder="" name="quantity"
                     value="{{ old('quantity') }}" />
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <label for="quantity" class="col-sm-2 col-form-label">زبون</label>
+            <div class="col-sm-4">
+                <select onchange="window.location.replace('/orderView/{{ $category }}'.)" name="client_id"
+                    name="work_placement" id="work_placement" class="form-control">
+                    <option value=""> ----
+                    </option>
+                    @foreach ($clients as $prd)
+                        <option value="{{ $prd->id }}"> {{ $prd->name }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
 
         </div>

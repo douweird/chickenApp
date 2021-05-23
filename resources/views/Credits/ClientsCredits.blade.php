@@ -14,6 +14,7 @@
                             <th>ID</th>
                             <th>المبلغ </th>
                             <th>تاريخ </th>
+                            <th> فاتورة</th>
                             <th>أجراءات</th>
                         </tr>
                     </thead>
@@ -25,6 +26,13 @@
                                     <td>{{ $crt->id }}</td>
                                     <td>{{ $crt->credit_amount }}</td>
                                     <td>{{ $crt->credit_date }}</td>
+                                    <td>
+                                        @if ($crt->order_id != null)
+                                            <a class="btn btn-success" class="graph"
+                                                href="{{ url('/orderCredit/' . $crt->order_id ?? '-') }}"><i
+                                                    class="fa fa-list"></i></a>
+                                        @endif
+                                    </td>
                                     <td>
                                         <center>
                                             <a class="btn btn-info" class="graph"

@@ -16,6 +16,7 @@
                             <th>الاسم</th>
                             <th>المبلغ </th>
                             <th>تاريخ </th>
+
                             <th>أجراءات</th>
                         </tr>
                     </thead>
@@ -26,6 +27,7 @@
                                 <td>{{ $crt->client->name }}</td>
                                 <td>{{ $crt->credit_amount }}</td>
                                 <td>{{ $crt->credit_date }}</td>
+
                                 <td>
                                     <center>
                                         <a class="btn btn-info" class="graph"
