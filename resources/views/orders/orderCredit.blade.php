@@ -18,6 +18,7 @@
                             <th>النوع</th>
                             <th>كمية</th>
                             <th>المجموع</th>
+                            <th>الربح</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -27,6 +28,7 @@
                                 <td>{{ $order->category }}</td>
                                 <td>{{ $order->product }}</td>
                                 <td>{{ $order->amount }}kg</td>
+                                <td>{{ $order->productinfo->selling_price * $order->amount }} درهم</td>
                                 <td>{{ $order->total }} درهم</td>
                             </tr>
                         @endforeach

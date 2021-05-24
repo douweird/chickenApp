@@ -9,8 +9,8 @@ class Order extends Model
     //
     public $table = "orders";
 
-    public function product()
+    public function productinfo()
     {
-        return $this->hasOne(Product::class, 'product');
+        return $this->hasOne(Product::class, 'name', 'product');
     }
 }

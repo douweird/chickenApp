@@ -514,7 +514,7 @@ class HomeController extends Controller
             $order->category = $category;
             $order->product = $request->input('product');
             $order->amount = $request->input('quantity');
-            $order->total = $product->selling_price * $order->amount;
+            $order->total = ($product->selling_price - $product->buying_price) * $order->amount;
             $order->save();
             if ($request->input('client_id')) {
                 return redirect('/AddCredit/' . $request->input('client_id') . '?order_id=' . $order->id);
@@ -524,13 +524,22 @@ class HomeController extends Controller
         }
         $products = Product::where('category', $category)->get();
         $clients = Client::all();
-        $arr = array('products' => $products, 'category' => $category, 'clients' => $clients);
+        $date_day = Carbon::now()->startOfDay();
+
+        $orders = Order::where('created_at', '>', $date_day)
+            ->orderBy('created_at', 'desc')
+            ->get();
+        if ($request->input('date')) {
+            //dd($request->input('date'));
+            $orders = Order::whereDate('created_at', '=', $request->input('date'))->orderBy('created_at', 'desc')->get();
+        }
+        $arr = array('products' => $products, 'category' => $category, 'clients' => $clients, 'orders' => $orders);
         return view('orders.orderView', $arr);
     }
 
     public function dashboard()
     {
-        $date_day = Carbon::now()->startOfMonth();
+        $date_day = Carbon::now()->startOfDay();
         $TotaldayDinde = DB::table('orders')
             ->where('created_at', '>', $date_day)
             ->where('category', '=', 'Dinde')
