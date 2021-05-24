@@ -2,7 +2,10 @@
 
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800"> مجموع المعاليف</h1>
+        <h1 class="h3 mb-0 text-gray-800"> مجموع المعاليف</h1><br>
+    </div>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800"> درجة حرارة العنبر: {{ $heat }}</h1><br>
     </div>
 
     <form method="post" action="{{ url('/addalf') }}">

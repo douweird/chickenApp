@@ -59,6 +59,7 @@ class HomeController extends Controller
 
     public function addalf(Request $request)
     {
+
         $kwara = kwara::all();
         if ($kwara->count() == 0) {
             $kwara = new kwara();
@@ -99,8 +100,10 @@ class HomeController extends Controller
     public function lkwaraView()
     {
         //dd($kwara_last = DB::table('stockAlf')->latest()->first());
+
         $kwara = kwara::all();
         //dd($kwara->count());
+        /*
         if ($kwara->count() == 10) {
             $rest_alf = kwara::where('day', 0)->first()->alf;
             $rest_flales = kwara::where('day', 0)->first()->falos;
@@ -110,8 +113,9 @@ class HomeController extends Controller
                 $rest_flales -= $k->sold;
                 //dd($rest_flales);
             }
-        }
-        $arr = array('kwara' => $kwara);
+        }*/
+        $heat = [35, 33, 33, 32, 31, 30, 30, 30, 29, 29, 28, 28, 28, 27, 27, 27, 26, 25, 25, 25, 24, 24, 24, 23, 23, 23, 22, 22, 22, 22, 22, 21, 21, 21, 21, 20, 20, 20, 20, 21, 21, 20, 20, 20, 20];
+        $arr = array('kwara' => $kwara, 'heat' => $kwara->count() == 0 ? '' : $heat[$kwara->count() - 1]);
         return view('lkwara.lkwaraView', $arr);
     }
 
