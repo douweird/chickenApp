@@ -40,12 +40,12 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Bonjour</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Empolyees login</h1>
                                     </div>
-                                    <form class="user" role="form" method="POST" action="/login">
+                                    <form class="user" role="form" method="POST" action="/emplogin">
                                         {{ csrf_field() }}
                                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                            <input type="email" class="form-control form-control-user"
+                                            <input type="text" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder=" Adresse Email..." value="{{ old('email') }}"
                                                 name="email">
@@ -78,8 +78,8 @@
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="{{ url('/emplogin') }}">
-                                            Employees login
+                                        <a class="small" href="{{ url('/password/reset') }}">
+                                            Mot de passe oublié ?
                                         </a>
                                     </div>
                                 </div>
